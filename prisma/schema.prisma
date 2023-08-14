@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model User {
+  id             String      @id @default(auto()) @map("_id") @db.ObjectId
+  email          String      @unique
+  username       String      @unique
+  first_name     String?
+  last_name      String?
+  name           String?
+  service        String?
+  phone          String?
+  emailVerified  DateTime?
+  image          String?
+  password       String?
+  hobbies        String[]
+  birthdate      DateTime?
+  gender         Gender?
+  status         UserStatus? @default(ACTIVE)
+  avatar         String?
+  occupation     String?
+  skills         String[]
+  certifications String[]
+  bio            String?
+  email_verified DateTime?
+
+  education_level   EducationLevel?
+  Direction         Direction?      @relation(fields: [direction_id], references: [id])
+  direction_id      String?         @db.ObjectId
+  Department        Department?     @relation(fields: [department_id], references: [id])
+  department_id     String?         @db.ObjectId
+  Position          Position?       @relation(fields: [position_id], references: [id])
+  position_id       String?         @db.ObjectId
+  Role              Role?           @relation(fields: [role_id], references: [id])
+  role_id           String?         @db.ObjectId
+  education_history String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // 1,1 One-to-one relationship with the Address model.
+  // Represents the user's address details.
+  Address  Address?
+  // 1,N One-to-many relationship with the Account model.
+  // Represents user accounts associated with different providers (e.g., OAuth, OpenID Connect).
+  // 1,N One-to-many relationship with the Session model.
+  // Represents user sessions.
+  Sessions Session[]
+  // 1,N One-to-many relationship with the AuthOption model.
+  // Represents authentication options available to the user (e.g., password, two-factor, OAuth).
+
+  @@unique([username, email])
+  @@map(name: "users")
+}
+
+model Inventory {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  type              String
+  category          String
+  item              String
+  responsible       String
+  status            String
+  installation_date String?
+  brand             String?
+  product_key       String?
+  product_key_exp   String?
+  version           String?
+  physical_location String?
+  address           String?
+  model             String?
+  note              String?
+  ip                String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+}
+
+model Role {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String   @unique
+  description   String?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  User          User[]
+  created_by_id String
+}
+
+model Direction {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  name        String  @unique
+  description String?
+
+  User       User[]
+  Department Department[]
+  created_at DateTime     @default(now())
+  updated_at DateTime     @updatedAt
+
+  Position Position[]
+}
+
+model Department {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String     @unique
+  description  String?
+  direction    Direction? @relation(fields: [direction_id], references: [id])
+  direction_id String?    @db.ObjectId
+  User         User[]
+  created_at   DateTime   @default(now())
+  updated_at   DateTime   @updatedAt
+  Position     Position[]
+}
+
+model Position {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  name          String      @unique
+  description   String?
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+  User          User[]
+  Department    Department? @relation(fields: [department_id], references: [id])
+  department_id String?     @db.ObjectId
+  Direction     Direction?  @relation(fields: [direction_id], references: [id])
+  direction_id  String?     @db.ObjectId
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String   @db.ObjectId
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map(name: "sessions")
+}
+
+model Address {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  country String?
+  state   String?
+  city    String?
+  street  String?
+  zip     String?
+  // One-to-one relationship with the User model.
+  // Links the address to the user it belongs to.
+  User    User    @relation(fields: [user_id], references: [id])
+  user_id String  @unique @db.ObjectId
+}
+
+type Photo {
+  height Int
+  width  Int
+  url    String
+}
+
+enum VerificationTypes {
+  LINK
+  CODE
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+  ON_LEAVE
+}
+
+enum EducationLevel {
+  PRIMARY
+  SECONDARY
+  HIGH_SCHOOL
+  BACHELOR
+  MASTER
+  DOCTORATE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+// enum RoleEnum {
+//   USER
+//   ADMIN
+//   MODERATOR
+// }
+
+// enum AuthOptionType {
+//   PASSWORD
+//   TWO_FACTOR
+//   MULTI_FACTOR
+//   OAUTH
+//   JWT
+//   OPENID_CONNECT
+//   BIOMETRIC
+//   PASSKEY
+//   SINGLE_SIGN_ON
+//   PASSWORDLESS
+//   CERTIFICATE
+//   TOTP
+// }
+
+// enum DirectionEnum {
+//   ETHICAL_HACKING
+//   SECURITY_ENGINEERING
+//   NETWORK_SECURITY
+//   APPLICATION_SECURITY
+//   CLOUD_SECURITY
+//   IOT_SECURITY
+//   CRYPTOGRAPHY_AND_ENCRYPTION
+//   RISK_MANAGEMENT
+//   PRIVACY_AND_DATA_PROTECTION
+//   SECURE_DEVOPS
+//   INDUSTRIAL_CONTROL_SYSTEMS_SECURITY
+//   MOBILE_SECURITY
+// }
+
+// enum DepartmentEnum {
+//   IT
+//   SALES
+//   MARKETING
+//   HR
+//   FINANCE
+//   ENGINEERING
+//   DESIGN
+//   OPERATIONS
+//   CUSTOMER_SERVICE
+//   PRODUCT_MANAGEMENT
+// }
+
+// enum PositionEnum {
+//   FRONTEND_DEVELOPER
+//   BACKEND_DEVELOPER
+//   FULL_STACK_DEVELOPER
+//   MOBILE_DEVELOPER
+//   UI_DESIGNER
+//   UX_DESIGNER
+//   DATABASE_ADMINISTRATOR
+//   SYSTEMS_ANALYST
+//   PROJECT_MANAGER
+//   DATA_SCIENTIST
+// }
