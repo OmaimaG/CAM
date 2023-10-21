@@ -13,6 +13,14 @@ const sidebarData = [
         icon: Icons.rapport,
         href: "/director-general/dashboard/reports"
       },
+      { title: "ticket", 
+      icon: Icons.home ,
+      
+         href: "/director-general/dashboard/ticket",
+    
+      
+      
+       },
       {
         title: "Calendar",
         icon: Icons.calendar,

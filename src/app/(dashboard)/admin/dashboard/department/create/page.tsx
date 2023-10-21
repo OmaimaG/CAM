@@ -39,7 +39,7 @@ export default async function Users() {
     <DashboardShell>
       <DashboardHeader
         heading="Add Department"
-        text="chnage me ."
+        text=" ."
       />
       <div className="grid gap-10">
         <Form

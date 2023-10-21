@@ -14,10 +14,18 @@ const sidebarData = [
           { title: "Vulnerability", href: "/rssi/dashboard/vulnerabilities" },
         ],
       },
+      { title: "ticket", 
+      icon: Icons.home ,
+      options: [
+        { title: "Ticket", href: "/rssi/dashboard/ticket"},
+        { title: "myTicket", href: "/rssi/dashboard/ticket/replay" },
+      ],
+      
+       },
       {
         title: "Calendar",
         icon: Icons.calendar,
-        href: "/dashboard/calendar"
+        href: "/rssi/dashboard/calendar"
       },
 ]
 

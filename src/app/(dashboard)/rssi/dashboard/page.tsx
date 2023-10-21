@@ -3,8 +3,9 @@
 import { DashboardShell } from "@/components/shell"
 import { DashboardHeader } from "@/components/header"
 import { Button } from "@/components"
+import Cards from "../_components/cards"
 import Link from "next/link"
-
+import EnvBarChart from  "../_components/env-bar-chart"
 export const metadata = {
   title: "Admin Dashboard",
 }
@@ -12,11 +13,10 @@ export const metadata = {
 export default async function DashboardPage() {
   return (
     <DashboardShell>
-      <DashboardHeader heading="Chef department" text="Chef department desc" >  <Link href="#">
-          <Button>Do something</Button>
-        </Link> </DashboardHeader>
+      
       <div className="grid gap-10">
-      {/* HOT LI THEB LAHNE */}
+      <Cards/>
+      
       </div>
     </DashboardShell>
   )

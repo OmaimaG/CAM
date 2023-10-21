@@ -13,6 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "types": ["node", "bcryptjs"],
     "incremental": true,
     "plugins": [
       {
@@ -25,6 +26,6 @@
       "@components": ["components/index"],
     },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "pages/ticket/page.jsx", "pages/ticket/layout.jsx", "src/app/inviteuser/layout.jsx", "src/app/inviteuser/page.jsx", "src/app/admin/admin.jsx", "src/app/assets/layout.jsx", "src/app/assets/page.jsx", "src/app/api/getdata/getdata.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "pages/ticket/page.jsx", "pages/ticket/layout.jsx", "src/app/inviteuser/layout.jsx", "src/app/inviteuser/page.jsx", "src/app/admin/admin.jsx", "src/app/assets/layout.jsx", "src/app/assets/page.jsx", "src/app/api/getdata/getdata.ts", "src/app/(dashboard)/technician/dashboard/ticket/layout.jsx", "src/app/(dashboard)/technician/dashboard/ticket/page.jsx", "src/app/(dashboard)/rssi/_components/Calendarcom.tsx", "src/app/api/v1/ticket/route.ts", "src/app/(dashboard)/chef-department/dashboard/ticket/ticket-list/page.jsx", "src/app/(dashboard)/chef-department/dashboard/ticket/replay/[id]/page.jsx", "src/app/(dashboard)/chef-department/_components/sidebar.jsx", "src/app/(dashboard)/rssi/dashboard/vulnerabilities/_component/Searchd.jsx", "src/app/(dashboard)/chef-department/dashboard/reclamation/page.jsx"],
   "exclude": ["node_modules"]
 }

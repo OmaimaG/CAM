@@ -1,0 +1,42 @@
+[
+    {
+         "id":1 ,
+        "ip":"192.168.100.1",
+        "Numéro CVE":"CVE-2021-12345",
+        "Description":"Security Vulnerability in a Web Browser",
+        "Solution" :"update the browser to the latest available version"
+        },
+    {
+        "id":2 ,
+        "ip":"192.168.1.1",
+        "Numéro CVE":"CVE-2021-54321",
+        "Description":"Command Injection Vulnerability in a Mail Server",
+        "Solution" :"apply a security patch provided by the mail server provider to fix the vulnerability"
+        },
+    {
+        "id":3 ,
+        "ip":"192.0.2.1",
+        "Numéro CVE":"CVE-2021-67890",
+        "Description":"Authentication Bypass Vulnerability in a Mobile Application",
+        "Solution" :"release an update to the mobile application that fixes the vulnerability"
+        },
+    {
+        "id":4 ,
+     "ip":"192.100.2.1",
+     "Numéro CVE":"CVE-2021-13579",
+     "Description":"Denial of Service (DoS) Vulnerability in a File Server",
+     "Solution" :"update the file server with a security patch "
+            },
+     {
+        "id":5 ,
+         "ip":"196.229.32.207",
+         "Numéro CVE":"CVE-2021-24680",
+          "Description":"Weak Authentication Vulnerability in a Web Application",
+         "Solution" :"use strong passwords"}
+         
+    
+           
+    
+    
+    
+    ]

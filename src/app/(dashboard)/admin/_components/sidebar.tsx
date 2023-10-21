@@ -28,10 +28,11 @@ const sidebarData = [
         href: "/admin/dashboard/department/create"  ,
       },
       {
-        title: "Calendar",
-        icon: Icons.calendar,
-        href: "/dashboard/calendar"
+        title: "Direction",
+        icon: Icons.dashboard,
+        href: "/admin/dashboard/direction/create"  ,
       },
+    
 ]
 
 

@@ -38,7 +38,7 @@ const depSchema = z.object({
     .nonempty("The direction ID field cannot be empty"),
 })
 
-export async function POST(req: NextRequest, res: NextRequest) {
+export  async function POST(req: NextRequest, res: NextRequest) {
   try {
     const { name, direction_id } = depSchema.parse(await req.json())
 

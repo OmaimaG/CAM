@@ -6,18 +6,16 @@ import { Sidebar } from 'flowbite-react';
 
 const sidebarData = [
       { title: "Home", href: "/", icon: Icons.home },
+     
       {
-        title: "Consult the reports",
-        icon: Icons.rapport,
-        options: [
-          { title: "Create", href: "/technician/dashboard/reports/create" },
-          { title: "View all", href: "/technician/dashboard/reports" },
-        ],
+        title: "ticket",
+        icon: Icons.calendar,
+        href: "/technician/dashboard/ticket"
       },
       {
         title: "Calendar",
         icon: Icons.calendar,
-        href: "/dashboard/calendar"
+        href: "/technician/dashboard/calendar"
       },
 ]
 

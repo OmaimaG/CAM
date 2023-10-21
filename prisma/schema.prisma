@@ -36,9 +36,12 @@ model User {
   Department        Department?     @relation(fields: [department_id], references: [id])
   department_id     String?         @db.ObjectId
   Position          Position?       @relation(fields: [position_id], references: [id])
-  position_id       String?         @db.ObjectId
+   position_id      String?       @db.ObjectId
   Role              Role?           @relation(fields: [role_id], references: [id])
   role_id           String?         @db.ObjectId
+  userEvents      CalendarEvent[]
+   tickets            Ticket[] 
+   Reclamations Reclamation[]
   education_history String?
 
   created_at DateTime @default(now())
@@ -151,6 +154,52 @@ model Address {
   User    User    @relation(fields: [user_id], references: [id])
   user_id String  @unique @db.ObjectId
 }
+
+model Ticket {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String?
+  description String?
+ receiverName String?
+  User        User     @relation(fields: [receiver_id ], references: [id])
+  receiver_id     String
+  sender_id  String
+  status String @default(" ")
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+   messages      Message[]
+}
+model Reclamation {
+ id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  userId     String
+  User        User     @relation(fields: [userId  ], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Message {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  content    String
+  ticket     Ticket   @relation(fields: [ticket_id], references: [id])
+  ticket_id  String
+  created_at DateTime @default(now())
+}
+
+model CalendarEvent {
+  id        String          @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  start     DateTime
+  end       DateTime
+  user_id    String   @unique @db.ObjectId
+  User      User     @relation(fields: [user_id], references: [id])
+
+  created_at DateTime     @default(now())
+  updated_at DateTime     @updatedAt
+}
+
+
+
 
 type Photo {
   height Int

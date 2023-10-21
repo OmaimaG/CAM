@@ -19,13 +19,13 @@ export default async function Users() {
     {
       name: "name",
       label: "Full Name",
-      placeholder: "Oumaima jbeli",
+      placeholder: "Full Name ",
     },
     { name: "email", label: "Email", placeholder: "example@domain.com" },
     {
       name: "phone",
       label: "Phone number",
-      placeholder: "+215 23 456 789",
+      placeholder: "+216 ",
     },
     { name: "password", label: "Password", placeholder: "Enter a strong user password (12-Aa1)" ,  },
     {

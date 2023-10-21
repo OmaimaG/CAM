@@ -14,9 +14,9 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   const session = await getSession()
   const user = session?.user
-
+  console.log('User Role:', user?.role);
   if(user?.role !== "RSSI") {
-    throw new PermissionDeniedError("Only RSSI can access this page")
+    throw new PermissionDeniedError("Only rssi can access this page")
   }
 
   return (

@@ -8,7 +8,7 @@ export const metadata = {
 export default async function DashboardPage() {
   return (
     <DashboardShell>
-      <DashboardHeader heading="Technician" text="Technician desc" >  </DashboardHeader>
+      <DashboardHeader heading="Technician" text="Technician welcome " >  </DashboardHeader>
       <div className="grid gap-10">
       {/* HOT LI THEB LAHNE */}
       </div>
